@@ -18,7 +18,7 @@ const Game: React.FC = () => {
   return (
     <div className={css(styles.container)}>
       <header className={css(styles.header)}>
-        <h1 className={css(styles.headerTitle)}>Energy Farmer</h1>
+        <h1 className={css(styles.headerTitle)}>Overtone Reactor</h1>
         <div className={css(styles.headerStats)}>
           <div>Residents: {residents}</div>
           <div>Watts per Resident: {wattsPerResident}</div>
@@ -41,15 +41,8 @@ const Game: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'fixed',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: '#292929',
-    color: '#FFFFFF',
     padding: 20,
   },
   header: {
