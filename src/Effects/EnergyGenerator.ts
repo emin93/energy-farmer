@@ -30,7 +30,7 @@ export const useEnergyGenerator = (
           analyser.getByteFrequencyData(frequencyArray);
 
           const generatedEnergy = frequencyArray[0];
-          setGeneratedEnergy(generatedEnergy);
+          setGeneratedEnergy(generatedEnergy > 50 ? Math.floor(generatedEnergy / 10) : 0);
         };
 
         check();

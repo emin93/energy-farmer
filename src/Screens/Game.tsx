@@ -35,6 +35,11 @@ const Game: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
+    position: 'fixed',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: '#292929',
@@ -52,6 +57,8 @@ const styles = StyleSheet.create({
   headerStats: {},
   main: {
     display: 'flex',
+    flex: 1,
+    alignItems: 'center',
   },
   energyContainer: {
     position: 'relative',
