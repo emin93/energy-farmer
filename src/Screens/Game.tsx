@@ -1,13 +1,19 @@
 import { css, StyleSheet } from 'aphrodite/no-important';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useEnergy } from '../Effects/Energy';
 import { useEnergyGenerator } from '../Effects/EnergyGenerator';
+import { useLevel } from '../Effects/Level';
 
 const Game: React.FC = () => {
+  const { energy, setEnergy } = useEnergy();
+  const level = useLevel(energy);
   const [residents, setResidents] = useState(1);
   const [wattsPerResident, setWattsPerResident] = useState(5);
-  const { energy, setEnergy } = useEnergy();
-  const generatedEnergy = useEnergyGenerator(energy, setEnergy, residents * wattsPerResident, 100);
+  const generatedEnergy = useEnergyGenerator(energy, setEnergy, residents * wattsPerResident);
+
+  useEffect(() => {
+    setResidents(level);
+  }, [level]);
 
   return (
     <div className={css(styles.container)}>

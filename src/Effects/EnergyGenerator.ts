@@ -5,8 +5,7 @@ import { useGameTick } from './GameTick';
 export const useEnergyGenerator = (
   energy: number,
   setEnergy: React.Dispatch<React.SetStateAction<number>>,
-  consumption: number,
-  max: number
+  consumption: number
 ) => {
   const [generatedEnergy, setGeneratedEnergy] = useState(10);
 
@@ -30,7 +29,7 @@ export const useEnergyGenerator = (
           analyser.getByteFrequencyData(frequencyArray);
 
           const generatedEnergy = frequencyArray[0];
-          setGeneratedEnergy(generatedEnergy > 50 ? Math.floor(generatedEnergy / 10) : 0);
+          setGeneratedEnergy(Math.floor(generatedEnergy / 2));
         };
 
         check();
@@ -46,8 +45,8 @@ export const useEnergyGenerator = (
   useGameTick(() => {
     const newEnergy = energy + generatedEnergy - consumption;
 
-    if (newEnergy >= max) {
-      setEnergy(max);
+    if (newEnergy >= 100) {
+      setEnergy(100);
       return;
     }
 
