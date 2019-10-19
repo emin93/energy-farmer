@@ -18,7 +18,7 @@ const Game: React.FC = () => {
   useEffect(() => {
     setResidents(level);
     setEnergy(0);
-  }, [level]);
+  }, [level, setEnergy]);
 
   return (
     <div className={css(styles.container)}>
