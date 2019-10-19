@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/overtone-reactor/precache-manifest.c7dea3bb4a913e27b864eb5f98cfbb42.js"
+  "/overtone-reactor/precache-manifest.758c2477d6cafd30ef2a1f90139dc53e.js"
 );
 
 self.addEventListener('message', (event) => {
