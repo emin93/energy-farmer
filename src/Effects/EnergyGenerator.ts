@@ -2,12 +2,16 @@ import { useEffect, useState } from 'react';
 import EnergyGeneratorSound from '../Sounds/EnergyGenerator';
 import { useGameTick } from './GameTick';
 
+const scale = (value: number, inputMin: number, inputMax: number, outputMin: number, outputMax: number) => {
+  return ((value - inputMin) * (outputMax - outputMin)) / (inputMax - inputMin) + outputMin;
+};
+
 export const useEnergyGenerator = (
   energy: number,
   setEnergy: React.Dispatch<React.SetStateAction<number>>,
   consumption: number
 ) => {
-  const [generatedEnergy, setGeneratedEnergy] = useState(10);
+  const [generatedEnergy, setGeneratedEnergy] = useState(0);
 
   useEffect(() => {
     EnergyGeneratorSound.play();
@@ -43,19 +47,21 @@ export const useEnergyGenerator = (
   }, []);
 
   useGameTick(() => {
-    const newEnergy = energy + generatedEnergy - consumption;
+    let newDesiredEnergy = energy + scale(generatedEnergy, 0, 100, 1, 10) - consumption;
 
-    if (newEnergy >= 100) {
-      setEnergy(100);
-      return;
+    if (newDesiredEnergy >= 100) {
+      newDesiredEnergy = 100;
     }
 
-    if (newEnergy <= 0) {
-      setEnergy(0);
-      return;
+    if (newDesiredEnergy <= 0) {
+      newDesiredEnergy = 0;
     }
 
-    setEnergy(newEnergy);
+    if (newDesiredEnergy > energy) {
+      setEnergy(energy + consumption);
+    } else {
+      setEnergy(energy - consumption);
+    }
   });
 
   return generatedEnergy;

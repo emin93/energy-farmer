@@ -12,11 +12,12 @@ const Game: React.FC = () => {
   const { energy, setEnergy } = useEnergy();
   const level = useLevel(energy);
   const [residents, setResidents] = useState(1);
-  const [wattsPerResident] = useState(5);
+  const [wattsPerResident] = useState(1);
   useEnergyGenerator(energy, setEnergy, residents * wattsPerResident);
 
   useEffect(() => {
     setResidents(level);
+    setEnergy(0);
   }, [level]);
 
   return (

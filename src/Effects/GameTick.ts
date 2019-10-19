@@ -4,7 +4,7 @@ const callbacks = new Map();
 
 const doGameTick = () => {
   callbacks.forEach(callback => callback());
-  window.setTimeout(doGameTick, 1000);
+  window.setTimeout(doGameTick, 100);
 };
 
 doGameTick();
