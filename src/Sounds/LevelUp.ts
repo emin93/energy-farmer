@@ -1,7 +1,9 @@
 // @ts-ignore
 import Pizzicato from 'pizzicato';
 
-const sound = new Pizzicato.Sound('./assets/sounds/level-up.wav');
+const sound = new Pizzicato.Sound('./assets/sounds/level-up.wav', {
+  options: { volume: 0.1 },
+});
 
 sound.addEffect(
   new Pizzicato.Effects.Delay({
